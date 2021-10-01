@@ -481,6 +481,8 @@ components:
               $ref: '#/components/schemas/DataEntityRefList'
             target_list:
               $ref: '#/components/schemas/DataEntityRefList'
+            latest_run:
+              $ref: '#/components/schemas/DataTransformerRun'
 
     DataTransformerDetails:
       allOf:
@@ -495,6 +497,44 @@ components:
       allOf:
         - $ref: '#/components/schemas/DataInput'
         - $ref: '#/components/schemas/DataEntityDetailsBaseObject'
+
+    DataTransformerRun:
+      allOf:
+        - $ref: '#/components/schemas/DataEntityRunBaseObject'
+        - type: object
+          properties:
+            data_transformer_id:
+              type: integer
+              format: int64
+            start_time:
+              type: string
+              format: date-time
+            end_time:
+              type: string
+              format: date-time
+            status_reason:
+              type: string
+            status:
+              type: string
+              enum:
+                - SUCCESS
+                - FAILED
+                - SKIPPED
+                - BROKEN
+                - ABORTED
+                - UNKNOWN
+
+    DataTransformerRunList:
+      type: object
+      properties:
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/DataTransformerRun'
+        page_info:
+          $ref: '#/components/schemas/PageInfo'
+      required:
+        - items
 
     DataQualityTestRun:
       allOf:
@@ -1477,6 +1517,14 @@ components:
 
     DataQATestIdParam:
       name: dataqatest_id
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+
+    DataTransformerIdParam:
+      name: datatransformer_id
       in: path
       required: true
       schema:
