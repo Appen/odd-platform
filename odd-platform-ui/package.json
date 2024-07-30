@@ -41,7 +41,7 @@
   "dependencies": {
     "@mui/lab": "^5.0.0-alpha.101",
     "@mui/material": "^5.8.5",
-    "@mui/system": "^5.8.5",
+    "@mui/system": "^5.16.0",
     "@mui/x-date-pickers": "^5.0.10",
     "@reduxjs/toolkit": "^1.8.5",
     "@uiw/react-md-editor": "^3.19.0",
